@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react'
 import TodosContext from './todosContext'
 
 function TodosContextProvider({children}) {
@@ -17,12 +17,12 @@ function TodosContextProvider({children}) {
         setTodos(prevTodods => [...prevTodods.filter(td => td.id !== id), {...todo, done: !todo.done}].sort((a, b) => a.id - b.id))
     };
 
-    const updateTodo = (id, title) =>{
+    const updateTodoTitle = (id, title) =>{
         const todo = todos.find(td => td.id === id);
         setTodos(prevTodods => [...prevTodods.filter(td => td.id !== id), {...todo, title}].sort((a, b) => a.id - b.id))
     };
 
-  return <TodosContext.Provider value={{todos, addTodo, deleteTodo, toggleTodoStatus, updateTodo}}>{children}</TodosContext.Provider>;
+  return <TodosContext.Provider value={{todos, addTodo, deleteTodo, toggleTodoStatus, updateTodoTitle}}>{children}</TodosContext.Provider>;
 }
 
 export default TodosContextProvider

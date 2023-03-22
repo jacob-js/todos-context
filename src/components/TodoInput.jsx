@@ -1,14 +1,13 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { addTodo } from '../redux/features/todos';
+import useTodosContext from '../context/useTodosContext';
 
 function TodoInput({setShowInput}) {
   const [title, setTitle] = useState('');
-  const dispatch = useDispatch();
+  const {addTodo} = useTodosContext();
 
   const handleSubmit = (event) =>{
     if(event.key === "Enter" && title.trim()){
-      dispatch(addTodo({title}))
+      addTodo(title)
       setTitle('')
     }
   }
